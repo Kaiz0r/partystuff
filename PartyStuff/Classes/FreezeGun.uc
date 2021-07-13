@@ -3,6 +3,7 @@
 //=============================================================================
 class FreezeGun extends DeusExWeapon;
 
+var() int fzHitDamage;
 function string GetDisplayString(Actor P)
 {
 	if(P.isA('DeusExPlayer'))
@@ -42,23 +43,30 @@ function ProcessTraceHit(Actor Other, Vector HitLocation, Vector HitNormal, Vect
 	local DeusExPlayer dxPlayer, DXP;
 	local Pawn P;
 	
-	if(Other.isa('DeusExPlayer'))
+	if(Other.isa('DeusExPlayer') && DeusExPlayer(Other).ReducedDamageType != 'all')
 	{
-		DeusExPlayer(Other).TakeDamage(20, DeusExPlayer(Owner), Other.Location, HitLocation,'Shot');
-		if(DeusExPlayer(Other).Health <= 0)
+		DeusExPlayer(Other).TakeDamage(fzHitDamage, DeusExPlayer(Owner), Other.Location, HitLocation,'Special');
+		/*if(DeusExPlayer(Other).Health <= 0)
 		{
 			FreezeIt(Other);
-		}
+		}*/
 		return;
 	}
-	else if(Other.isa('ScriptedPawn'))
+	else if(Other.isa('ScriptedPawn') && !ScriptedPawn(Other).bInvincible)
 	{
-		FreezeIt(Other);
+        ScriptedPawn(Other).TakeDamage(fzHitDamage, DeusExPlayer(Owner), Other.Location, HitLocation,'Special');
+        if(Rand(100) > ScriptedPawn(Other).Health){
+            FreezeIt(Other);
+        }
+		
 		return;
 	}
-	else if(Other.isa('Decoration') && !Other.isa('FrozenPerson'))
+	else if(Other.isa('DeusExDecoration') && !Other.isa('FrozenPerson') && !DeusExDecoration(Other).bMovable == False && !DeusExDecoration(Other).bInvincible == True)
 	{
-		FreezeIt(Other);
+        DeusExDecoration(Other).TakeDamage(fzHitDamage, DeusExPlayer(Owner), Other.Location, HitLocation,'Special');
+        if(Rand(100) > ScriptedPawn(Other).Health){
+            FreezeIt(Other);
+        }
 		return;
 	}
 }
