@@ -380,7 +380,7 @@ function TakeDamageBase(int Damage, Pawn instigatedBy, Vector hitlocation, Vecto
 			{
 				foreach RadiusActors(Class'CopSpawnPoint', CSP, 756)
 				{
-					foreach AllActors(class'DXScriptedPAwn',cCount)
+					foreach AllActors(class'DXScriptedPawn',cCount)
 						if(cCount.bCop)
 							cCountint++;
 					

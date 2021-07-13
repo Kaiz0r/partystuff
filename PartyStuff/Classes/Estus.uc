@@ -288,8 +288,8 @@ defaultproperties
      PickupViewMesh=LodMesh'DeusExDeco.Flask'
      ThirdPersonMesh=LodMesh'DeusExDeco.Flask'
      LandSound=Sound'DeusExSounds.Generic.GlassHit1'
-     Icon=Texture'BeltIconEstus'
-     largeIcon=Texture'LargeIconEstus'
+    Icon=Texture'PGAssets.Icons.BeltIconEstus'
+    largeIcon=Texture'PGAssets.Icons.LargeIconEstus'
      largeIconWidth=18
      largeIconHeight=44
      Description="Estus magic potion of healing"

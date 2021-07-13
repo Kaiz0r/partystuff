@@ -1,9 +1,9 @@
 class CopSpawnPoint extends PGSpawnPoints;
 
-var class<DXScriptedPawn> CopClass;
+var() class<DXScriptedPawn> CopClass;
 
 defaultproperties
 {
 bHidden=True
-CopClass=class'eCTGrunt'
+CopClass=class'TCBots.eCTGrunt'
 }
